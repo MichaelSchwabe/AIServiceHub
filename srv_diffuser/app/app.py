@@ -18,10 +18,10 @@ class Item(BaseModel):
     eta: Optional[float] = None
     guidance_scale: Optional[int] = None
 
-model_id = "CompVis/ldm-text2im-large-256"
+#model_id = "CompVis/ldm-text2im-large-256"
 
 # load model and scheduler
-ldm = DiffusionPipeline.from_pretrained(model_id)
+#ldm = DiffusionPipeline.from_pretrained(model_id)
 
 # run pipeline in inference (sample random noise and denoise)
 @app.post("/generate")
