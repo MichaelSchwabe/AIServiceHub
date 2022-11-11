@@ -8,7 +8,7 @@ projects:
         revision: main
       remotes:
         origin: 'https://github.com/MichaelSchwabe/AIServiceHub.git'
-    name: AIServiceHub
+    name: aiservicehub
 
 components:
   - name: python
