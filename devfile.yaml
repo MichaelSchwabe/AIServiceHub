@@ -1,0 +1,34 @@
+schemaVersion: 2.1.0
+metadata:
+  name: AIServiceHub-Demo
+
+projects:
+  - git:
+      checkoutFrom:
+        revision: main
+      remotes:
+        origin: 'https://github.com/MichaelSchwabe/AIServiceHub.git'
+    name: AIServiceHub
+
+components:
+  - name: python-aiservicehub-demo
+    container:
+      image: quay.io/manhah/test-python-1:latest
+      #volumeMounts:
+      #  - name: venv
+      #    path: /home/user/.venv
+      memoryLimit: 4G
+      mountSources: true
+  #- name: venv
+  #  volume:
+  #    size: 1G
+commands:
+  - id: run
+    exec:
+      label: "Run the application"
+      component: python
+      workingDir: ${PROJECTS_ROOT}/srv_sentiment/
+      commandLine: python app.py
+      group:
+        kind: run
+
