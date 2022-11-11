@@ -1,0 +1,11 @@
+# this is a pattern for an devspaces from RedHat
+# entrypoint is an null pointer to take the container alive
+
+
+FROM python:3.10
+
+COPY requirements.txt .
+
+CMD ["pip", "install", "-r", "requirements.txt"]
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
