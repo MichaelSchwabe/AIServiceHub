@@ -27,7 +27,7 @@ pipe.to(device)
 
 def generate(): 
     with autocast(device): 
-        image = pipe(prompt.get(), guidance_scale=8.5)["sample"][0]
+        image = pipe(prompt.get(), num_inference_steps=150,guidance_scale=6.5)["sample"][0]
     
     image.save('generatedimage.png')
     img = ImageTk.PhotoImage(image)
