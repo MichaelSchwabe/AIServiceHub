@@ -6,8 +6,9 @@ import time
 # Title
 #st.title("Hello GeeksForGeeks !!!")
 
-url = "http://localhost:8000/translation?"
+#url = "http://localhost:8000/translation?"
 #url = "http://localhost:8000/summerization?"
+url = "http://localhost:8000/generate?"
 #uvm.
 
 
