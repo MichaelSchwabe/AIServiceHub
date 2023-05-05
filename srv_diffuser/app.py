@@ -14,6 +14,7 @@ from diffusers import StableDiffusionPipeline
 
 from fastapi import FastAPI, Response
 from pydantic import BaseModel
+from fastapi.responses import FileResponse
 
 modelid = "CompVis/stable-diffusion-v1-4"
 device = "cuda"
@@ -39,15 +40,16 @@ class Input(BaseModel):
 
 # run pipeline in inference (sample random noise and denoise)
 @app.post("/generate")
-def generate_image(input:Input_simple):
-    image = pipe(input.prompt, guidance_scale=8.5)["sample"][0]
-    return Response(content=image, media_type="image/png") 
+def generate_image(input:Input_simple): #async 
+    image = pipe(input.prompt, num_inference_steps=150, guidance_scale=6.5).images[0]
+    #return Response(content=image, media_type="image/png")
+    path = "temp.png"
+    image.save(path)
+    return FileResponse(path)
 
 #@app.post("/generate_advanced")
 #def generate_image(item:Item):
 #    prompt = Item.prompt
 #    image = ldm([prompt], num_inference_steps=Item.inference_steps, eta=Item.eta, guidance_scale=Item.guidance_scale)["sample"]
 #    return Response(content=image, media_type="image/png") 
-
-
     

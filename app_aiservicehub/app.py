@@ -1,6 +1,7 @@
 # import module
 import requests
 import streamlit as st
+import time
 
 # Title
 #st.title("Hello GeeksForGeeks !!!")
@@ -20,17 +21,19 @@ def fetch(session, url):
 
 def main():
     st.set_page_config(page_title="AIServiceHub", page_icon="🤖")
-    st.title("My AIServiceHub - Translation EN - GER Service")
+    st.title("AIServiceHub - Translation EN - GER")
     session = requests.Session()
     with st.form("my_prompt"):
         prompt = st.text_input(label="prompt", key="sentence")
 
         submitted = st.form_submit_button("Submit")
-
+        x = time.time()
         if submitted:
             st.write("Result")
             data = session.post(url,data ='{"sentence": "'+prompt+'"}')
             if data:
+                y = time.time()
+                st.write("response time in s:", float(y - x))
                 st.write(data.status_code)
                 st.write(data.text)
             else:
